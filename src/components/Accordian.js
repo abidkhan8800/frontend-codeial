@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Comment } from './'
-import { CreateComment } from './'
+import Box from '@mui/material/Box';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -11,11 +11,12 @@ export default function ControlledAccordions() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
+    console.log(event)
     setExpanded(isExpanded ? panel : false);
   };
 
   return (
-    <div>
+    <Box sx={{paddingBottom:2}}>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -30,6 +31,6 @@ export default function ControlledAccordions() {
             <Comment />
         </AccordionDetails>
       </Accordion>
-    </div>
+    </Box>
   );
 }

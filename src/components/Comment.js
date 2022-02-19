@@ -8,7 +8,7 @@ import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles((theme)=>({
     lightGrey: {
-        backgroundColor: "lightGrey",
+        backgroundColor: "lightgrey",
     }
 }))
 

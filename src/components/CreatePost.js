@@ -7,16 +7,16 @@ import TextField from '@mui/material/TextField';
 function CreatePost() {
 
   return (
-    <Paper elevation={2} padding={2}>
-        <Box sx={{padding: 2}}>
-            <TextField label="Whats on your Mind ?????" multiline fullWidth rows={3} placeholder="Type something...."/>
-            <Box sx={{display:"flex", justifyContent: "flex-end", paddingTop: 2}}>
-                <Button variant="contained">
-                    Create Post
-                </Button>
-            </Box>
+   <Paper>
+      <Box sx={{padding: 2}}>
+        <TextField label="Whats on your Mind ?????" multiline fullWidth rows={3} placeholder="Type something...."/>
+        <Box sx={{display:"flex", justifyContent: "flex-end", paddingTop: 2}}>
+            <Button variant="contained">
+                Create Post
+            </Button>
         </Box>
-    </Paper>
+    </Box>
+   </Paper>
   )
 }
 
