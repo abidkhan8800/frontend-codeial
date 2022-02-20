@@ -4,6 +4,7 @@ import TopAppBar from './AppBar';
 import CreatePost from './CreatePost';
 import Comment from './Comment';
 import CreateComment from './CreateComment';
+import Loader from './Loader';
 
 export {
     Post, 
@@ -12,4 +13,5 @@ export {
     CreatePost,
     Comment,
     CreateComment,
+    Loader
 }

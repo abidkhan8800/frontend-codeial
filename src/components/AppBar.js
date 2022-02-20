@@ -8,6 +8,8 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
+import { useAuth } from '../hooks';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const useStyles = makeStyles({
   linkStyling:{
@@ -57,9 +59,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function TopAppBar() {
   const classes = useStyles();
+  const auth = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed">
+      <AppBar position="">
         <Toolbar>
         <Link to="/" className={classes.linkStyling}>
             <Typography
@@ -82,7 +85,26 @@ export default function TopAppBar() {
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+          { auth.user ? <Box sx={{ display: { md: 'flex' } }}>
+          <AccountCircleIcon color="white" fontSize="large"/>
+          <Link to="/login" className={classes.linkStyling}>
+              <Typography variant="h6" component="div"marginX={2}>
+                  {auth.user.name}
+              </Typography>
+          </Link>
+          <Link to="/login" className={classes.linkStyling} onClick={auth.logout}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: 'none', sm: 'block' } }}
+            >
+              
+              Logout
+            </Typography>
+          </Link>
+          </Box> : 
+          <Box sx={{ display: { md: 'flex' } }}>
           <Link to="/login" className={classes.linkStyling}>
             <Typography
               variant="h6"
@@ -106,6 +128,7 @@ export default function TopAppBar() {
             </Typography>
           </Link>
           </Box>
+        }
         </Toolbar>
       </AppBar>
     </Box>

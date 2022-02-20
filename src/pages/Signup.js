@@ -19,25 +19,28 @@ const useStyles = makeStyles((theme)=>({
     }
 }))
 
-function Login() {
+function Signup() {
   const classes = useStyles();
   return (
    <Paper elevation={3}>
     <Typography variant="h5" component="h1" align="center" p={1}>
        Registration Form
     </Typography>
-    <Box textAlign="center">
+    <Box component="form" textAlign="center">
+            <Box className={classes.fieldContainer}>
+                <TextField label="Name" required placeholder="Enter Name"  type="text" size="small" className={classes.formField}/>
+           </Box>
            <Box className={classes.fieldContainer}>
-                <TextField label="Email" placeholder="Enter Email" size="small" className={classes.formField}/>
+                <TextField label="Email" required placeholder="Enter Email"  type="email" size="small" className={classes.formField}/>
            </Box>
            <Box  className={classes.fieldContainer}>
-                <TextField label="Password" placeholder="Enter Password" size="small" type="password" className={classes.formField}/>
+                <TextField label="Password"  required placeholder="Enter Password" size="small" type="password" className={classes.formField}/>
            </Box>
            <Box  className={classes.fieldContainer}>
-                <TextField label="Confirm Password" placeholder="Enter Confirm Password" size="small" type="password" className={classes.formField}/>
+                <TextField label="Confirm Password" required placeholder="Enter Confirm Password" size="small" type="password" className={classes.formField}/>
            </Box>
             <Box  className={classes.fieldContainer}>
-                <Button variant="contained">
+                <Button type="submit" variant="contained">
                     Register
                 </Button>
             </Box>
@@ -46,4 +49,4 @@ function Login() {
   )
 }
 
-export default Login
+export default Signup

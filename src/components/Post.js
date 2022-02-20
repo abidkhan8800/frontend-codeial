@@ -4,14 +4,15 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-// import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import {CreateComment} from './';
+import PropTypes from 'prop-types';
+import { useAuth } from '../hooks';
 
 
 function Post({posts}) {
+    const auth = useAuth();
   return (
     <>
     {posts.map((post, postIndex)=>(
@@ -41,13 +42,17 @@ function Post({posts}) {
                         10 Comments
                     </Typography>
                 </Box>
-                <CreateComment />
+               { auth.user && <CreateComment />}
                 <Accordian margin={2}/>
             </Box>
         </Paper>
     ))}
     </>
   )
+}
+
+Post.propTypes = {
+    posts: PropTypes.array.isRequired,
 }
 
 export default Post
