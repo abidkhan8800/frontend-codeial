@@ -62,7 +62,7 @@ export default function TopAppBar() {
   const auth = useAuth();
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="">
+      <AppBar position="fixed">
         <Toolbar>
         <Link to="/" className={classes.linkStyling}>
             <Typography

@@ -55,8 +55,17 @@ export const getPosts = (page=1, limit=5) => {
 }
 
 export const  login = (email, password) => {
-    return customFetch(API_URLS.login(email, password),{
+    return customFetch(API_URLS.login(),{
         method: 'POST',
         body: {email, password}
+    })
+}
+
+export const register = (name, email, password) => {
+    console.log("inside the signup")
+    console.log(API_URLS.signup())
+    return customFetch(API_URLS.signup(),{
+        method: 'POST',
+        body: {name, email, password, confirm_password: password}
     })
 }

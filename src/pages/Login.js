@@ -72,12 +72,26 @@ function Login() {
         </Typography>
         <Box component="form" textAlign="center" onSubmit={handleSubmit}>
             <Box className={classes.fieldContainer}>
-                    <TextField label="Email" placeholder="Enter Email" size="small" type="email"className={classes.formField}
-                    value={email} onChange={(e)=> setEmail(e.target.value)}
-                    />
+                <TextField 
+                    label="Email" 
+                    placeholder="Enter Email" 
+                    size="small" 
+                    type="email"
+                    className={classes.formField}
+                    value={email} 
+                    onChange={(e)=> setEmail(e.target.value)}
+                />
             </Box>
             <Box  className={classes.fieldContainer}>
-                    <TextField label="Password" placeholder="Enter Password" size="small" type="password" className={classes.formField} value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                <TextField 
+                    label="Password" 
+                    placeholder="Enter Password" 
+                    size="small" 
+                    type="password" 
+                    className={classes.formField} 
+                    value={password} 
+                    onChange={(e)=> setPassword(e.target.value)}
+                />
             </Box>
                 <Box  className={classes.fieldContainer}>
                     <Button type="submit" variant="contained" disabled={loggingIn} sx={{ fontSize:15}}>
