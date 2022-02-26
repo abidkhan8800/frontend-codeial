@@ -7,7 +7,7 @@ import Button from '@mui/material/Button'
 import { makeStyles} from '@mui/styles';
 import { useToasts } from 'react-toast-notifications';
 import { useAuth } from '../hooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme)=>({
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme)=>({
 }))
 
 function Login() {
+    const classes = useStyles();
     const navigate = useNavigate();
     const {addToast} = useToasts();
     const [email, setEmail] = useState('');
@@ -31,9 +32,6 @@ function Login() {
     const [loggingIn, setLoggingIn] = useState(false);
 
     const auth = useAuth();
-
-    console.log(auth)
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoggingIn(true);
@@ -49,7 +47,7 @@ function Login() {
         }
 
         const response = await auth.login(email, password);
-        console.log(response)
+        console.log("login reponse",response)
         if(response.success) {
             addToast('Logged in successfully',{
                 appearance: 'success'
@@ -57,14 +55,15 @@ function Login() {
             navigate('/')
 
         }else{
-            addToast(response.data,{
+            addToast(response.message,{
                 appearance: 'error'
             })
         }
         setLoggingIn(false);
     }
-
-    const classes = useStyles();
+    if(auth.user){
+        return <Navigate to="/"/>
+    }
     return (
     <Paper elevation={3}>
         <Typography variant="h5" component="h1" align="center" p={1}>

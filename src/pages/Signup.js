@@ -5,7 +5,7 @@ import  Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button'
 import { makeStyles} from '@mui/styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import { useAuth } from '../hooks'
 
@@ -56,6 +56,10 @@ function Signup() {
         }
 
 
+  }
+
+  if(auth.user){
+    return <Navigate to="/"/>
   }
 
   return (

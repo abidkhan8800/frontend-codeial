@@ -9,6 +9,7 @@ import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import {CreateComment} from './';
 import PropTypes from 'prop-types';
 import { useAuth } from '../hooks';
+import { Link } from 'react-router-dom';
 
 
 function Post({posts}) {
@@ -21,7 +22,7 @@ function Post({posts}) {
                 <AccountCircleIcon color="primary" fontSize="large"/>
                 {/* <img  src=""/> */}
                 <Typography variant="subtitle1" component="h1" ml={2}>
-                    {post.user.name}
+                   <Link to={`/user/${post.user._id}`} state={{user: post.user}}> {post.user.name}</Link> 
                 </Typography>
             </Box>
             <Box margin={2}>

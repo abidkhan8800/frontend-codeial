@@ -87,7 +87,7 @@ export default function TopAppBar() {
           <Box sx={{ flexGrow: 1 }} />
           { auth.user ? <Box sx={{ display: { md: 'flex' } }}>
           <AccountCircleIcon color="white" fontSize="large"/>
-          <Link to="/login" className={classes.linkStyling}>
+          <Link to="/settings" className={classes.linkStyling}>
               <Typography variant="h6" component="div"marginX={2}>
                   {auth.user.name}
               </Typography>
