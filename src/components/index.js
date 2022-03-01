@@ -5,6 +5,7 @@ import CreatePost from './CreatePost';
 import Comment from './Comment';
 import CreateComment from './CreateComment';
 import Loader from './Loader';
+import FriendsList from './FriendsList'
 
 export {
     Post, 
@@ -13,5 +14,6 @@ export {
     CreatePost,
     Comment,
     CreateComment,
-    Loader
+    Loader,
+    FriendsList
 }

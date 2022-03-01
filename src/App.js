@@ -8,8 +8,6 @@ import Container from '@mui/material/Container'
 
 function App() {
   const auth = useAuth();
-  console.log("fom app",auth)
-
   if(auth.loading){
     return <Loader />
   }
@@ -27,7 +25,7 @@ function App() {
         <Route exact path="/login" element={  <Login /> }></Route>
         <Route exact path="/signup" element={  <Signup /> }></Route>
         <Route exact path="/settings" element={  <PrivateRoute><Settings /></PrivateRoute> }></Route>
-        <Route exact path="/user/:id" element={  <PrivateRoute><UserProfile /></PrivateRoute> }></Route>
+        <Route exact path="/user/:userId" element={  <PrivateRoute><UserProfile /></PrivateRoute> }></Route>
         <Route path="*" element={  <Page404 /> }></Route>
       </Routes>
       </Container>

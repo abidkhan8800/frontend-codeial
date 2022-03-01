@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { getPosts } from  '../api';
+import { getPosts, getFriends } from  '../api';
 import { Post } from '../components';
-import { CreatePost, Loader } from '../components';
+import { CreatePost, Loader, FriendsList } from '../components';
 import { useAuth } from '../hooks'
 
 import Paper from "@mui/material/Paper";
@@ -14,21 +14,23 @@ import Box from "@mui/material/Box";
 function Home() {
     const [posts, setPosts] = useState([]);
     const auth = useAuth();
+    const [loading, setLoading] = useState(true)
     useEffect(()=>{
-        const fetchPost = async () => {
+
+        const fetchData = async () => {
             const response = await getPosts();
-            console.log(response)
             setPosts(response.data.posts);
+            setLoading(false)
         }
 
-        fetchPost();
+        fetchData();
     },[])
 
-    if(auth.loading){
+    if(loading){
         return <Loader/>
     }
     return (
-        <Grid container spacing={1} marginTop={8}>
+        <Grid container spacing={2} marginTop={8}>
             <Grid item sm={8}>
                {auth.user &&  <CreatePost />}
                 <Post posts={posts}/>
@@ -36,7 +38,7 @@ function Home() {
             <Grid item sm={4}>
                 <Paper>
                     <Box>
-                        <h1>Friend List</h1>
+                        <FriendsList />
                     </Box>
                 </Paper>
             </Grid>

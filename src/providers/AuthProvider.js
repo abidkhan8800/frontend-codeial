@@ -7,7 +7,8 @@ const initialState = {
     logout: () => {},
     loading: true,
     signup: () => {},
-    editUser: () => {}
+    editUser: () => {},
+    updateUserFriends: () => {}
 
 }
 
