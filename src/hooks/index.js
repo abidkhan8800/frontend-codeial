@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from "react";
-import { AuthContext } from '../providers/AuthProvider';
-import { login as userLogin, register, editProfile, getFriends } from '../api';
+import { AuthContext } from '../providers';
+import { PostsContext} from '../providers'
+import { login as userLogin, register, editProfile, getFriends, getPosts } from '../api';
 import { setItemInLocalStorage, LOCALSTORAGE_TOKEN_KEY, removeItemFromLocalStorage, getItemFromLocalStorage} from '../utils';
 import jwt from 'jwt-decode';
 
@@ -86,12 +87,12 @@ export const useProvideAuth = () => {
     }
 
     const logout = () => {
+        console.log("inside logout")
         setUser(null);
         removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
     }
 
     const updateUserFriends = async (addFriend, friend) => {
-        console.log("jhgjgfjagjhfgajfhgajfgajhgfajhg jgjhagjagdjhagdjh",addFriend, friend)
         if(addFriend){
             setUser({
                 ...user,
@@ -118,5 +119,55 @@ export const useProvideAuth = () => {
         signup,
         editUser,
         updateUserFriends
+    }
+}
+
+export const usePosts = () =>{
+    return useContext(PostsContext)
+}
+
+export const useProvidePosts = () => {
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(()=>{
+
+        const fetchData = async () => {
+            const response = await getPosts();
+            setPosts(response.data.posts);
+            setLoading(false)
+        }
+
+        fetchData();
+    },[])
+
+    const addPostToState = (post) => {
+        const newPosts = [post, ...posts];
+        setPosts(newPosts);
+    }
+
+    const addCommentToState = (comment) =>{
+        // let newPosts = posts;
+        // const updatedPostIndex = newPosts.findIndex((post)=> post._id===comment.post);
+        // newPosts[updatedPostIndex].comments = [comment, ...newPosts[updatedPostIndex].comments];
+        // console.log(newPosts);
+        // setPosts([...newPosts])
+
+        let newPosts = posts.map((post)=>{
+            if(post._id === comment.post){
+                return { ...post, comments:[...post.comments, comment]}
+            }
+            return post;
+        })
+
+        setPosts(newPosts);
+        
+    }
+
+    return {
+        data: posts,
+        loading,
+        addPostToState,
+        addCommentToState
     }
 }

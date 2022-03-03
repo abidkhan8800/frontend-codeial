@@ -33,7 +33,6 @@ export default function FriendsList() {
     const classes = useStyles();
     const auth = useAuth();
     const {friends = []} = auth.user;
-    console.log(friends, auth.user.friends);
   return (
     <Box className={classes.friendListContainerStyles}>
         <Typography variant="h4" component="h1">Friends</Typography>
@@ -41,7 +40,7 @@ export default function FriendsList() {
         {friends && friends.map((friend)=>(
             <Link className={classes.userLinkStyles} to={`/user/${friend.to_user._id}`} key={`friend-${friend.to_user._id}`}>
                 <img alt="" src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-High-Quality-Image.png"></img>
-                <Typography variant="subtitle1" component="p">{friend.to_user.name}</Typography>
+                <Typography variant="subtitle1" component="p">{friend.to_user.email}</Typography>
             </Link>
         ))}
     </Box>

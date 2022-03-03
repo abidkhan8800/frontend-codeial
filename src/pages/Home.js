@@ -1,9 +1,7 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
-import { getPosts, getFriends } from  '../api';
 import { Post } from '../components';
 import { CreatePost, Loader, FriendsList } from '../components';
-import { useAuth } from '../hooks'
+import { useAuth, usePosts } from '../hooks'
 
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
@@ -12,33 +10,23 @@ import Box from "@mui/material/Box";
 
 
 function Home() {
-    const [posts, setPosts] = useState([]);
     const auth = useAuth();
-    const [loading, setLoading] = useState(true)
-    useEffect(()=>{
-
-        const fetchData = async () => {
-            const response = await getPosts();
-            setPosts(response.data.posts);
-            setLoading(false)
-        }
-
-        fetchData();
-    },[])
-
-    if(loading){
+    const posts = usePosts();
+    if(posts.loading){
         return <Loader/>
     }
     return (
         <Grid container spacing={2} marginTop={8}>
             <Grid item sm={8}>
                {auth.user &&  <CreatePost />}
-                <Post posts={posts}/>
+                { posts.data.map((post)=>(
+                    <Post post={post} key={`post-${post._id}`}/>
+                ))}
             </Grid>
             <Grid item sm={4}>
                 <Paper>
                     <Box>
-                        <FriendsList />
+                    {auth.user &&  <FriendsList />}  
                     </Box>
                 </Paper>
             </Grid>

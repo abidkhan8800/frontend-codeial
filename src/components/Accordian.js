@@ -7,14 +7,11 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export default function ControlledAccordions() {
+export default function ControlledAccordions(props) {
   const [expanded, setExpanded] = React.useState(false);
-
   const handleChange = (panel) => (event, isExpanded) => {
-    console.log(event)
     setExpanded(isExpanded ? panel : false);
   };
-
   return (
     <Box sx={{paddingBottom:2}}>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
@@ -28,7 +25,9 @@ export default function ControlledAccordions() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Comment />
+          {props.comments.map((comment)=>(
+             <Comment comment={comment} key={`commet-${comment._id}`}/>
+          ))}
         </AccordionDetails>
       </Accordion>
     </Box>
